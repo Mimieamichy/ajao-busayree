@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmed &amp; Najeebah | Nikaah Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&family=Amiri&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#12213a;
+    --navy-2:#1c3454;
+    --sky:#7fb4da;
+    --sky-deep:#4d84ad;
+    --gold:#c8a24c;
+    --gold-light:#e9d39a;
+    --ivory:#faf6ec;
+    --ivory-2:#f2ead9;
+    --silver:#b9c1c9;
+    --ink:#1a2332;
+    --line: rgba(200,162,76,0.35);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'EB Garamond', serif;
+    background:var(--ivory);
+    color:var(--ink);
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Cormorant Garamond', serif; font-weight:500;}
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    font-size:0.72rem;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- arch motif ---------- */
+  .arch-frame{
+    position:relative;
+    width:min(340px, 78vw);
+    aspect-ratio: 3/4;
+    border-radius: 170px 170px 10px 10px;
+    border:1.5px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(180deg, rgba(200,162,76,0.08), rgba(200,162,76,0.02));
+    padding: 30px 22px;
+  }
+  .arch-frame::before{
+    content:'';
+    position:absolute; inset:14px;
+    border:1px solid rgba(200,162,76,0.45);
+    border-radius: 150px 150px 6px 6px;
+    pointer-events:none;
+  }
+  .arch-small{
+    width:64px; height:84px;
+    border-radius: 32px 32px 4px 4px;
+    border:1px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+
+  /* ---------- pattern bg ---------- */
+  .pattern-dark{
+    background-color:var(--navy);
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(200,162,76,0.06) 0, transparent 45%),
+      radial-gradient(circle at 80% 75%, rgba(127,180,218,0.08) 0, transparent 45%);
+  }
+
+  /* ================= HERO ================= */
+  .hero{
+    min-height:100vh;
+    background:var(--navy);
+    color:var(--ivory);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding: 60px 20px 40px;
+    position:relative;
+  }
+  .hero .bismillah{
+    font-family:'Amiri', serif;
+    font-size:1.5rem;
+    color:var(--gold-light);
+    margin-bottom:8px;
+    letter-spacing:0.02em;
+  }
+  .hero .eyebrow{color:var(--sky); margin-bottom:26px;}
+  .hero-arch{
+    margin: 6px 0 30px;
+  }
+  .hero-names{
+    font-size: clamp(1.7rem, 5vw, 2.6rem);
+    line-height:1.35;
+    color:var(--ivory);
+  }
+  .hero-names .amp{
+    display:block;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--gold);
+    font-size:1.1rem;
+    margin: 6px 0;
+    letter-spacing:0.1em;
+  }
+  .hero-date{
+    margin-top:18px;
+    font-family:'Jost', sans-serif;
+    letter-spacing:0.2em;
+    color:var(--silver);
+    font-size:0.85rem;
+  }
+  .countdown{
+    display:flex; gap: clamp(10px,3vw,26px);
+    margin-top:34px;
+  }
+  .countdown .cell{ text-align:center; }
+  .countdown .num{
+    font-family:'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    color:var(--gold);
+    line-height:1;
+    min-width:52px;
+  }
+  .countdown .lbl{
+    font-family:'Jost', sans-serif;
+    font-size:0.62rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--silver);
+    margin-top:6px;
+    display:block;
+  }
+  .scroll-cue{
+    position:absolute; bottom:26px; left:50%; transform:translateX(-50%);
+    width:1px; height:34px; background:linear-gradient(var(--gold), transparent);
+    animation: cueMove 2.2s ease-in-out infinite;
+  }
+  @keyframes cueMove{ 0%,100%{opacity:0.2;} 50%{opacity:1;} }
+
+  /* ---------- marked calendar ---------- */
+  .calendar{
+    position:relative;
+    width:min(280px, 78vw);
+    background:var(--ivory);
+    border-radius:10px 10px 5px 5px;
+    box-shadow:0 16px 40px rgba(0,0,0,0.4);
+    margin-top:6px;
+  }
+  .calendar::before, .calendar::after{
+    content:''; position:absolute; top:-7px; width:11px; height:11px;
+    border-radius:50%; background:var(--silver); box-shadow:inset 0 1px 2px rgba(0,0,0,0.4);
+  }
+  .calendar::before{ left:24%; }
+  .calendar::after{ right:24%; }
+  .cal-head{
+    background:var(--gold); color:var(--navy);
+    text-align:center; padding:10px 0 6px;
+    font-family:'Jost', sans-serif; letter-spacing:0.22em; font-size:0.85rem;
+    border-radius:10px 10px 0 0;
+  }
+  .cal-head .cal-year{ display:block; font-size:0.62rem; letter-spacing:0.18em; opacity:0.7; margin-top:2px; }
+  .cal-body{ padding:14px 14px 16px; }
+  .cal-dow-row, .cal-grid{ display:grid; grid-template-columns:repeat(7,1fr); gap:4px; }
+  .cal-dow-row{ margin-bottom:6px; }
+  .cal-dow{
+    text-align:center; font-family:'Jost', sans-serif; font-size:0.58rem;
+    letter-spacing:0.04em; color:var(--sky-deep); text-transform:uppercase;
+  }
+  .cal-day{
+    text-align:center; font-family:'Cormorant Garamond', serif; font-size:0.82rem;
+    color:var(--ink); padding:4px 0; border-radius:50%; line-height:1.2;
+  }
+  .cal-day.blank{ visibility:hidden; }
+  .cal-day.marked{
+    background:var(--navy); color:var(--gold-light); font-weight:600;
+    box-shadow:0 0 0 2px var(--gold);
+  }
+  .cal-note{
+    text-align:center; margin-top:10px; font-family:'Jost', sans-serif;
+    font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold);
+  }
+
+  /* ================= SECTION SHELL ================= */
+  section{ padding: 90px 24px; }
+  .section-inner{ max-width:920px; margin:0 auto; }
+  .center{ text-align:center; }
+  .divider{
+    width:1px; height:44px;
+    background:linear-gradient(var(--gold), transparent);
+    margin: 0 auto 26px;
+  }
+  .divider.up{ background:linear-gradient(transparent, var(--gold)); margin: 26px auto 0; }
+
+  /* ================= INVITATION ================= */
+  .invitation{ background:var(--ivory); }
+  .invitation .eyebrow{ color:var(--sky-deep); }
+  .invitation h2{
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-style:italic;
+    color:var(--ink);
+    max-width:640px; margin:18px auto 0;
+    line-height:1.6;
+  }
+  .families{
+    display:flex; gap:40px; justify-content:center; flex-wrap:wrap;
+    margin: 40px 0;
+  }
+  .family{ max-width:280px; }
+  .family .role{
+    font-family:'Jost', sans-serif; font-size:0.68rem; letter-spacing:0.2em;
+    color:var(--sky-deep); text-transform:uppercase; margin-bottom:10px; display:block;
+  }
+  .family .name{ font-size:1.25rem; color:var(--ink); }
+  .couple-names{
+    margin-top: 30px;
+    font-size: clamp(1.5rem, 4vw, 2.1rem);
+    color:var(--navy-2);
+  }
+  .couple-names .and{
+    display:block; font-style:italic; color:var(--gold); font-size:1rem; margin:8px 0;
+  }
+
+  /* ================= VENUES ================= */
+  .venues{ background:var(--navy); color:var(--ivory); }
+  .venues .eyebrow{ color:var(--sky); }
+  .venues h2{ color:var(--ivory); }
+  .venue-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap:36px;
+    margin-top:50px;
+  }
+  @media (max-width:720px){ .venue-grid{ grid-template-columns:1fr; gap:50px; } }
+  .venue-card{ text-align:center; }
+  .venue-card .arch-small{ margin:0 auto 20px; border-color:var(--gold); }
+  .venue-card .tag{
+    font-family:'Jost', sans-serif; letter-spacing:0.25em; font-size:0.72rem;
+    color:var(--gold); text-transform:uppercase; margin-bottom:14px; display:block;
+  }
+  .venue-card .place{ font-size:1.3rem; color:var(--ivory); margin-bottom:10px; }
+  .venue-card .addr{ font-size:0.98rem; color:var(--silver); line-height:1.7; }
+  .venue-meta{
+    margin-top:44px; text-align:center;
+    font-family:'Jost', sans-serif; letter-spacing:0.15em; font-size:0.85rem;
+    color:var(--gold-light);
+  }
+  .venue-note{
+    margin-top:10px; font-family:'EB Garamond', serif; font-style:italic; color:var(--silver); font-size:0.95rem;
+  }
+  .venue-mosque{
+    margin: 44px auto 0; display:flex; flex-direction:column; align-items:center; gap:14px;
+  }
+  .venue-mosque svg{ width: min(220px, 60vw); height:auto; }
+  .venue-mosque-cap{
+    font-family:'Jost', sans-serif; letter-spacing:0.18em; font-size:0.7rem;
+    text-transform:uppercase; color:var(--gold-light);
+  }
+
+  /* ================= COLORS OF THE DAY ================= */
+  .colors{ background:var(--ivory-2); }
+  .colors .eyebrow{ color:var(--sky-deep); }
+  .swatches{
+    display:flex; justify-content:center; gap: clamp(20px, 4vw, 56px);
+    margin-top:50px; flex-wrap:wrap;
+  }
+  .swatch{ text-align:center; }
+  .swatch .circle{
+    width:88px; height:88px; border-radius:50%;
+    margin:0 auto 14px;
+    border:1px solid rgba(0,0,0,0.06);
+    box-shadow: inset 0 6px 14px rgba(255,255,255,0.5), inset 0 -10px 18px rgba(0,0,0,0.08), 0 6px 18px rgba(0,0,0,0.08);
+  }
+  .swatch.gold .circle{ background: radial-gradient(circle at 32% 28%, #f3e2ab, var(--gold) 68%, #9a7830); }
+  .swatch.white .circle{ background: radial-gradient(circle at 32% 28%, #ffffff, #f1ede2 60%, #d8d0bd); }
+  .swatch.sky .circle{ background: radial-gradient(circle at 32% 28%, #cfe6f5, var(--sky) 60%, #3f7ba3); }
+  .swatch.silver .circle{ background: radial-gradient(circle at 32% 28%, #f1f3f5, var(--silver) 60%, #838d96); }
+  .swatch .lbl{
+    font-family:'Jost', sans-serif; letter-spacing:0.18em; font-size:0.72rem;
+    text-transform:uppercase; color:var(--navy-2);
+  }
+
+  /* ================= LOVE STORY ================= */
+  .story{ background:var(--navy); color:var(--ivory); }
+  .story .eyebrow{ color:var(--sky); }
+  .timeline{
+    margin-top:56px;
+    position:relative;
+    max-width:680px; margin-left:auto; margin-right:auto;
+  }
+  .timeline::before{
+    content:'';
+    position:absolute; left:31px; top:6px; bottom:6px; width:1px;
+    background:linear-gradient(var(--gold), rgba(200,162,76,0.15));
+  }
+  @media (max-width:560px){ .timeline::before{ left:23px; } }
+  .moment{
+    display:flex; gap:24px; margin-bottom:42px; position:relative;
+  }
+  .moment:last-child{ margin-bottom:0; }
+  .moment .arch-small{
+    width:48px; height:64px; border-radius:24px 24px 3px 3px;
+    background:var(--navy);
+  }
+  @media (max-width:560px){ .moment .arch-small{ width:36px; height:48px; border-radius:18px 18px 3px 3px;} }
+  .moment .content .when{
+    font-family:'Jost', sans-serif; letter-spacing:0.18em; font-size:0.68rem;
+    text-transform:uppercase; color:var(--gold); margin-bottom:8px; display:block;
+  }
+  .moment .content p{ color:var(--ivory-2); line-height:1.75; font-size:1.02rem; }
+  .moment .content p + p{ margin-top:10px; }
+
+  /* ================= VERSE / TOAST ================= */
+  .verse{ background:var(--ivory); }
+  .verse-frame{
+    max-width:680px; margin:50px auto 0;
+    border:1px solid var(--gold);
+    border-radius: 210px 210px 16px 16px;
+    padding: 60px 40px 44px;
+    text-align:center;
+    position:relative;
+  }
+  .verse-frame::before{
+    content:'';
+    position:absolute; inset:16px;
+    border:1px solid rgba(200,162,76,0.4);
+    border-radius: 190px 190px 10px 10px;
+    pointer-events:none;
+  }
+  .verse-frame .surah{
+    font-family:'Jost', sans-serif; letter-spacing:0.2em; font-size:0.72rem;
+    text-transform:uppercase; color:var(--sky-deep); margin-bottom:22px; display:block;
+  }
+  .verse-frame blockquote{
+    font-family:'Cormorant Garamond', serif; font-style:italic;
+    font-size: clamp(1.1rem, 2.6vw, 1.4rem);
+    line-height:1.75; color:var(--navy-2);
+  }
+  .verse-frame cite{
+    display:block; margin-top:22px; font-family:'Jost', sans-serif; font-size:0.78rem;
+    letter-spacing:0.1em; color:var(--gold); font-style:normal;
+  }
+
+  /* ================= RSVP / FOOTER ================= */
+  .rsvp{ background:var(--navy); color:var(--ivory); }
+  .rsvp .eyebrow{ color:var(--sky); }
+  .rsvp h2{ color:var(--ivory); margin-top:16px; font-size: clamp(1.4rem, 3vw, 1.9rem); }
+  .phones{
+    display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:38px;
+  }
+  .phone-btn{
+    font-family:'Jost', sans-serif; letter-spacing:0.05em; font-size:0.95rem;
+    color:var(--navy); background:var(--gold-light);
+    border:1px solid var(--gold);
+    padding:12px 20px; border-radius:30px;
+    text-decoration:none;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .phone-btn:hover{ background:var(--gold); transform:translateY(-2px); }
+  .blessing{
+    max-width:560px; margin:50px auto 0; text-align:center;
+    font-style:italic; color:var(--silver); line-height:1.8; font-size:1.02rem;
+  }
+  .footer-note{
+    text-align:center; margin-top:60px;
+    font-family:'Jost', sans-serif; letter-spacing:0.2em; font-size:0.68rem;
+    color:var(--sky); text-transform:uppercase;
+  }
+
+  /* ================= COVER / BOOK-OPEN ================= */
+  body.locked{ overflow:hidden; height:100vh; }
+  .cover-scene{
+    position:fixed; inset:0; z-index:1000;
+    display:flex; align-items:center; justify-content:center;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(127,180,218,0.10), transparent 55%),
+      radial-gradient(circle at 75% 80%, rgba(200,162,76,0.10), transparent 55%),
+      var(--navy);
+    perspective: 2400px;
+    transition: opacity 0.6s ease 0.9s, visibility 0.6s ease 0.9s;
+  }
+  .cover-scene.gone{ opacity:0; visibility:hidden; }
+  .book-cover{
+    width:min(360px, 82vw);
+    aspect-ratio: 3/4.4;
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 6px),
+      linear-gradient(160deg, var(--navy-2), var(--navy) 70%);
+    border:1.5px solid var(--gold);
+    border-radius: 190px 190px 16px 16px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:22px;
+    padding: 46px 30px 36px;
+    position:relative;
+    cursor:pointer;
+    transform-origin:left center;
+    transform-style:preserve-3d;
+    box-shadow: 10px 24px 60px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(200,162,76,0.18);
+    transition: transform 1.3s cubic-bezier(.6,.04,.32,1);
+  }
+  .book-cover.open{ transform: rotateY(-155deg); }
+  .book-cover::before{
+    content:''; position:absolute; inset:12px;
+    border:1px solid rgba(200,162,76,0.5);
+    border-radius: 175px 175px 10px 10px;
+    pointer-events:none;
+  }
+  .book-cover::after{
+    content:''; position:absolute; left:0; top:0; bottom:0; width:16px;
+    background:linear-gradient(90deg, rgba(0,0,0,0.45), transparent);
+    border-radius: 190px 0 0 16px;
+  }
+  .cover-scene .eyebrow{ color:var(--sky); }
+  .cover-mosque{ width: 46%; max-width:120px; }
+  .cover-names{
+    text-align:center; color:var(--ivory);
+    font-size: clamp(1.15rem, 3.4vw, 1.5rem);
+    line-height:1.5;
+  }
+  .cover-names .amp{ color:var(--gold); font-style:italic; font-size:0.85rem; display:block; margin:4px 0; }
+  .tap-cue{
+    font-family:'Jost', sans-serif; letter-spacing:0.2em; font-size:0.66rem;
+    text-transform:uppercase; color:var(--gold-light);
+    display:flex; align-items:center; gap:10px;
+  }
+  .tap-ring{
+    width:10px; height:10px; border-radius:50%; border:1px solid var(--gold);
+    animation: ringPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes ringPulse{ 0%,100%{ transform:scale(1); opacity:0.5; } 50%{ transform:scale(1.6); opacity:1; } }
+  @media (prefers-reduced-motion: reduce){ .tap-ring{ animation:none; } }
+
+  /* ================= FIGURE ROW (dress code) ================= */
+  .figure-rows{ margin-top:54px; display:flex; flex-direction:column; gap:38px; }
+  .figure-row{ display:flex; justify-content:center; gap: clamp(8px, 2vw, 22px); flex-wrap:wrap; }
+  .figure{ display:flex; flex-direction:column; align-items:center; gap:10px; }
+  .figure svg{ width: clamp(46px, 8vw, 62px); height:auto; }
+  .figure .fig-lbl{
+    font-family:'Jost', sans-serif; font-size:0.6rem; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--navy-2); opacity:0.85;
+  }
+  .figure.lead svg{ width: clamp(56px, 10vw, 78px); }
+  .figure.lead .fig-lbl{ color:var(--gold); font-weight:600; }
+  .figure{ animation: figSway 4.5s ease-in-out infinite; }
+  .figure:nth-child(1){ animation-delay:0s; }
+  .figure:nth-child(2){ animation-delay:0.4s; }
+  .figure:nth-child(3){ animation-delay:0.8s; }
+  .figure:nth-child(4){ animation-delay:1.2s; }
+  @keyframes figSway{ 0%,100%{ transform:translateY(0) rotate(0deg); } 50%{ transform:translateY(-4px) rotate(0.6deg); } }
+  @media (prefers-reduced-motion: reduce){ .figure{ animation:none; } }
+  .row-caption{
+    text-align:center; font-family:'Jost', sans-serif; letter-spacing:0.18em;
+    font-size:0.7rem; text-transform:uppercase; color:var(--sky-deep);
+    margin-bottom:22px; position:relative; z-index:2;
+  }
+</style>
+</head>
+<body class="locked">
+
+<!-- ================= COVER (tap to open) ================= -->
+<div class="cover-scene" id="coverScene">
+  <div class="book-cover" id="bookCover">
+    <span class="eyebrow">The Nikaah Of</span>
+    <svg class="cover-mosque" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 8 L106 18 L94 18 Z" fill="#c8a24c"/>
+      <circle cx="100" cy="16" r="3" fill="#c8a24c"/>
+      <path d="M70 150 V95 Q70 55 100 55 Q130 55 130 95 V150" stroke="#c8a24c" stroke-width="2"/>
+      <path d="M84 150 V115 Q84 100 100 100 Q116 100 116 115 V150" stroke="#c8a24c" stroke-width="1.4"/>
+      <path d="M40 150 V70 Q40 60 48 60 Q56 60 56 70 V150" stroke="#c8a24c" stroke-width="1.6"/>
+      <path d="M144 150 V70 Q144 60 152 60 Q160 60 160 70 V150" stroke="#c8a24c" stroke-width="1.6"/>
+      <path d="M44 62 L52 48 L60 62" stroke="#c8a24c" stroke-width="1.4" fill="none"/>
+      <path d="M148 62 L156 48 L164 62" stroke="#c8a24c" stroke-width="1.4" fill="none"/>
+      <line x1="30" y1="150" x2="170" y2="150" stroke="#c8a24c" stroke-width="1.6"/>
+    </svg>
+    <div class="cover-names">
+      Ahmed &amp; Najeebah
+      <span class="amp">15th August 2026</span>
+    </div>
+    <div class="tap-cue"><span class="tap-ring"></span> Tap To Open</div>
+  </div>
+</div>
+
+<!-- ================= SITE CONTENT ================= -->
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="bismillah">بسم الله الرحمن الرحيم</div>
+  <div class="eyebrow">You Are Cordially Invited</div>
+
+  <div class="arch-frame hero-arch reveal in">
+    <div class="hero-names">
+      AHMED
+      <span class="amp">&amp; olamilekan ajao</span>
+      NAJEEBAH
+      <span class="amp">ikeoluwa busayree</span>
+    </div>
+  </div>
+
+  <div class="calendar reveal in">
+    <div class="cal-head">AUGUST<span class="cal-year">2026</span></div>
+    <div class="cal-body">
+      <div class="cal-dow-row">
+        <span class="cal-dow">S</span><span class="cal-dow">M</span><span class="cal-dow">T</span><span class="cal-dow">W</span><span class="cal-dow">T</span><span class="cal-dow">F</span><span class="cal-dow">S</span>
+      </div>
+      <div class="cal-grid">
+        <span class="cal-day blank"></span><span class="cal-day blank"></span><span class="cal-day blank"></span><span class="cal-day blank"></span><span class="cal-day blank"></span><span class="cal-day blank"></span><span class="cal-day">1</span>
+        <span class="cal-day">2</span><span class="cal-day">3</span><span class="cal-day">4</span><span class="cal-day">5</span><span class="cal-day">6</span><span class="cal-day">7</span><span class="cal-day">8</span>
+        <span class="cal-day">9</span><span class="cal-day">10</span><span class="cal-day">11</span><span class="cal-day">12</span><span class="cal-day">13</span><span class="cal-day">14</span><span class="cal-day marked">15</span>
+        <span class="cal-day">16</span><span class="cal-day">17</span><span class="cal-day">18</span><span class="cal-day">19</span><span class="cal-day">20</span><span class="cal-day">21</span><span class="cal-day">22</span>
+        <span class="cal-day">23</span><span class="cal-day">24</span><span class="cal-day">25</span><span class="cal-day">26</span><span class="cal-day">27</span><span class="cal-day">28</span><span class="cal-day">29</span>
+        <span class="cal-day">30</span><span class="cal-day">31</span>
+      </div>
+    </div>
+  </div>
+  <div class="cal-note">Abuja &middot; 10:00 AM</div>
+
+  <div class="countdown" id="countdown">
+    <div class="cell"><span class="num" id="cd-days">00</span><span class="lbl">Days</span></div>
+    <div class="cell"><span class="num" id="cd-hours">00</span><span class="lbl">Hours</span></div>
+    <div class="cell"><span class="num" id="cd-mins">00</span><span class="lbl">Min</span></div>
+    <div class="cell"><span class="num" id="cd-secs">00</span><span class="lbl">Sec</span></div>
+  </div>
+
+  <div class="scroll-cue"></div>
+</section>
+
+<!-- ================= INVITATION ================= -->
+<section class="invitation">
+  <div class="section-inner center reveal">
+    <div class="eyebrow">The Nikaah Of Our Children</div>
+    <h2>Cordially inviting you to witness a union blessed by Allah, in the presence of family and those we hold dear.</h2>
+
+    <div class="families">
+      <div class="family">
+        <span class="role">The Family Of</span>
+        <div class="name">Dr. Rafee' Owonla<br>Al-Ijebuwi</div>
+      </div>
+      <div class="family">
+        <span class="role">And That Of</span>
+        <div class="name">Engr. Ajao Lukuman<br>Busari</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="couple-names">
+      Ahmed Olamilekan Ajao
+      <span class="and">&amp;</span>
+      Najeebah Ikeoluwa Busayree
+    </div>
+  </div>
+</section>
+
+<!-- ================= VENUES ================= -->
+<section class="venues">
+  <div class="section-inner center reveal">
+    <div class="eyebrow">Please Join Us</div>
+    <h2>Nikaah &amp; Walimah</h2>
+
+    <div class="venue-mosque">
+      <svg viewBox="0 0 220 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M110 6 L118 20 L102 20 Z" fill="#c8a24c"/>
+        <line x1="110" y1="6" x2="110" y2="0" stroke="#c8a24c" stroke-width="2"/>
+        <circle cx="110" cy="0" r="3" fill="#c8a24c"/>
+        <path d="M78 168 V100 Q78 52 110 52 Q142 52 142 100 V168" stroke="#c8a24c" stroke-width="2.2"/>
+        <path d="M94 168 V128 Q94 110 110 110 Q126 110 126 128 V168" stroke="#c8a24c" stroke-width="1.6"/>
+        <circle cx="110" cy="94" r="10" stroke="#c8a24c" stroke-width="1.4"/>
+        <path d="M42 168 V78 Q42 66 52 66 Q62 66 62 78 V168" stroke="#c8a24c" stroke-width="1.8"/>
+        <path d="M158 168 V78 Q158 66 168 66 Q178 66 178 78 V168" stroke="#c8a24c" stroke-width="1.8"/>
+        <path d="M46 68 L52 50 L58 68" stroke="#c8a24c" stroke-width="1.6" fill="none"/>
+        <path d="M162 68 L168 50 L174 68" stroke="#c8a24c" stroke-width="1.6" fill="none"/>
+        <circle cx="52" cy="46" r="2.4" fill="#c8a24c"/>
+        <circle cx="168" cy="46" r="2.4" fill="#c8a24c"/>
+        <path d="M30 168 Q110 156 190 168" stroke="#c8a24c" stroke-width="1.4" fill="none"/>
+        <line x1="20" y1="168" x2="200" y2="168" stroke="#c8a24c" stroke-width="1.8"/>
+      </svg>
+      <span class="venue-mosque-cap">Al-Huda Masjid</span>
+    </div>
+
+    <div class="venue-grid">
+      <div class="venue-card">
+        <div class="arch-small" style="margin:0 auto 20px;"></div>
+        <span class="tag">Nikaah</span>
+        <div class="place">Al-Huda Masjid</div>
+        <div class="addr">
+          Millionaires Quarters, Byazhin-Kubwa<br>
+          Opposite Train Station<br>
+          Byazhin Road, Kubwa, Abuja
+        </div>
+      </div>
+      <div class="venue-card">
+        <div class="arch-small" style="margin:0 auto 20px;"></div>
+        <span class="tag">Walimah</span>
+        <div class="place">Alexandra Hall</div>
+        <div class="addr">
+          Algos Hotel<br>
+          Kubwa, Abuja
+        </div>
+      </div>
+    </div>
+
+    <div class="venue-meta">15TH AUGUST 2026 &nbsp;&middot;&nbsp; 10:00 AM</div>
+    <div class="venue-note">Walimah follows immediately after Nikaah, Insha Allah</div>
+  </div>
+</section>
+
+<!-- ================= COLORS OF THE DAY ================= -->
+<section class="colors">
+  <div class="section-inner center reveal">
+    <div class="eyebrow">Colour Of The Day</div>
+    <h2 style="margin-top:16px; font-size:1.5rem; color:var(--navy-2);">Dressed In Elegance</h2>
+
+    <div class="figure-rows">
+      <div>
+        <div class="row-caption">The Bride &amp; Her Maids</div>
+        <div class="figure-row">
+
+          <div class="figure">
+            <svg viewBox="0 0 100 165">
+              <path d="M28 30 Q26 54 34 70 L30 74 Q20 55 24 28 Z" fill="#3a2416"/>
+              <path d="M72 30 Q74 54 66 70 L70 74 Q80 55 76 28 Z" fill="#3a2416"/>
+              <circle cx="50" cy="34" r="19" fill="#e8c39c"/>
+              <path d="M31 26 Q50 8 69 26 Q69 18 50 14 Q31 18 31 26 Z" fill="#3a2416"/>
+              <path d="M39 16 L43 7 L50 14 L57 7 L61 16 Z" fill="#c8a24c"/><circle cx="50" cy="10" r="2.2" fill="#eadfa0"/>
+              <ellipse cx="42" cy="35" rx="3.6" ry="4.6" fill="#1a2332"/><circle cx="43.2" cy="33.4" r="1.1" fill="#fff"/>
+              <ellipse cx="58" cy="35" rx="3.6" ry="4.6" fill="#1a2332"/><circle cx="59.2" cy="33.4" r="1.1" fill="#fff"/>
+              <circle cx="36" cy="41" r="3.4" fill="#f2a9a0" opacity="0.55"/><circle cx="64" cy="41" r="3.4" fill="#f2a9a0" opacity="0.55"/>
+              <path d="M45 45 Q50 48 55 45" stroke="#8a4a3a" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <rect x="45" y="50" width="10" height="8" fill="#e8c39c"/>
+              <path d="M33 58 Q50 52 67 58 L84 150 Q50 164 16 150 Z" fill="#c8a24c" stroke="#12213a" stroke-width="1"/>
+              <path d="M26 120 Q50 128 74 120" stroke="rgba(18,33,58,0.18)" stroke-width="1.4" fill="none"/>
+              <path d="M22 136 Q50 146 78 136" stroke="rgba(18,33,58,0.18)" stroke-width="1.4" fill="none"/>
+              <circle cx="50" cy="68" r="5" fill="#faf6ec" stroke="#c8a24c" stroke-width="1"/>
+              <ellipse cx="28" cy="80" rx="6" ry="10" fill="#e8c39c"/><ellipse cx="72" cy="80" rx="6" ry="10" fill="#e8c39c"/>
+              <ellipse cx="40" cy="158" rx="6" ry="3" fill="#3a2416"/><ellipse cx="60" cy="158" rx="6" ry="3" fill="#3a2416"/>
+            </svg>
+            <span class="fig-lbl">Gold</span>
+          </div>
+
+          <div class="figure lead">
+            <svg viewBox="0 0 100 168">
+              <path d="M50 4 Q14 20 20 70 Q22 50 50 40 Q78 50 80 70 Q86 20 50 4 Z" fill="#eef2f5" opacity="0.75"/>
+              <path d="M27 29 Q25 54 33 70 L29 74 Q19 55 23 27 Z" fill="#3a2010"/>
+              <path d="M73 29 Q75 54 67 70 L71 74 Q81 55 77 27 Z" fill="#3a2010"/>
+              <circle cx="50" cy="34" r="20" fill="#f0d0ac"/>
+              <path d="M30 25 Q50 6 70 25 Q70 17 50 13 Q30 17 30 25 Z" fill="#3a2010"/>
+              <path d="M36 15 L41 4 L46 12 L50 2 L54 12 L59 4 L64 15 Z" fill="#c8a24c"/>
+              <circle cx="50" cy="6" r="2.6" fill="#f4e6b8"/><circle cx="41" cy="11" r="1.6" fill="#f4e6b8"/><circle cx="59" cy="11" r="1.6" fill="#f4e6b8"/>
+              <ellipse cx="42" cy="35" rx="3.8" ry="4.8" fill="#1a2332"/><circle cx="43.3" cy="33.2" r="1.2" fill="#fff"/>
+              <ellipse cx="58" cy="35" rx="3.8" ry="4.8" fill="#1a2332"/><circle cx="59.3" cy="33.2" r="1.2" fill="#fff"/>
+              <circle cx="35" cy="42" r="3.6" fill="#f2a9a0" opacity="0.55"/><circle cx="65" cy="42" r="3.6" fill="#f2a9a0" opacity="0.55"/>
+              <path d="M44 46 Q50 49.5 56 46" stroke="#8a4a3a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              <rect x="44" y="52" width="12" height="8" fill="#f0d0ac"/>
+              <path d="M30 60 Q50 53 70 60 L88 154 Q50 168 12 154 Z" fill="#faf6ec" stroke="#c8a24c" stroke-width="1.5"/>
+              <line x1="50" y1="60" x2="50" y2="154" stroke="#c8a24c" stroke-width="0.8"/>
+              <path d="M24 122 Q50 131 76 122" stroke="#e9d39a" stroke-width="1.4" fill="none"/>
+              <circle cx="50" cy="70" r="5.5" fill="#c8a24c" stroke="#faf6ec" stroke-width="1"/>
+              <ellipse cx="27" cy="84" rx="6.4" ry="10.5" fill="#f0d0ac"/><ellipse cx="73" cy="84" rx="6.4" ry="10.5" fill="#f0d0ac"/>
+              <circle cx="20" cy="100" r="5" fill="#c8a24c"/><circle cx="26" cy="104" r="4" fill="#e9d39a"/><circle cx="22" cy="108" r="3.4" fill="#c8a24c"/>
+              <ellipse cx="40" cy="162" rx="6.4" ry="3.2" fill="#3a2010"/><ellipse cx="60" cy="162" rx="6.4" ry="3.2" fill="#3a2010"/>
+            </svg>
+            <span class="fig-lbl">Bride</span>
+          </div>
+
+          <div class="figure">
+            <svg viewBox="0 0 100 165">
+              <path d="M28 30 Q26 54 34 70 L30 74 Q20 55 24 28 Z" fill="#3a2416"/>
+              <path d="M72 30 Q74 54 66 70 L70 74 Q80 55 76 28 Z" fill="#3a2416"/>
+              <circle cx="50" cy="34" r="19" fill="#e8c39c"/>
+              <path d="M31 26 Q50 8 69 26 Q69 18 50 14 Q31 18 31 26 Z" fill="#3a2416"/>
+              <path d="M39 16 L43 7 L50 14 L57 7 L61 16 Z" fill="#c8a24c"/><circle cx="50" cy="10" r="2.2" fill="#eadfa0"/>
+              <ellipse cx="42" cy="35" rx="3.6" ry="4.6" fill="#1a2332"/><circle cx="43.2" cy="33.4" r="1.1" fill="#fff"/>
+              <ellipse cx="58" cy="35" rx="3.6" ry="4.6" fill="#1a2332"/><circle cx="59.2" cy="33.4" r="1.1" fill="#fff"/>
+              <circle cx="36" cy="41" r="3.4" fill="#f2a9a0" opacity="0.55"/><circle cx="64" cy="41" r="3.4" fill="#f2a9a0" opacity="0.55"/>
+              <path d="M45 45 Q50 48 55 45" stroke="#8a4a3a" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <rect x="45" y="50" width="10" height="8" fill="#e8c39c"/>
+              <path d="M33 58 Q50 52 67 58 L84 150 Q50 164 16 150 Z" fill="#7fb4da" stroke="#12213a" stroke-width="1"/>
+              <path d="M26 120 Q50 128 74 120" stroke="rgba(18,33,58,0.18)" stroke-width="1.4" fill="none"/>
+              <path d="M22 136 Q50 146 78 136" stroke="rgba(18,33,58,0.18)" stroke-width="1.4" fill="none"/>
+              <circle cx="50" cy="68" r="5" fill="#faf6ec" stroke="#c8a24c" stroke-width="1"/>
+              <ellipse cx="28" cy="80" rx="6" ry="10" fill="#e8c39c"/><ellipse cx="72" cy="80" rx="6" ry="10" fill="#e8c39c"/>
+              <ellipse cx="40" cy="158" rx="6" ry="3" fill="#3a2416"/><ellipse cx="60" cy="158" rx="6" ry="3" fill="#3a2416"/>
+            </svg>
+            <span class="fig-lbl">Sky Blue</span>
+          </div>
+
+          <div class="figure">
+            <svg viewBox="0 0 100 165">
+              <path d="M28 30 Q26 54 34 70 L30 74 Q20 55 24 28 Z" fill="#3a2416"/>
+              <path d="M72 30 Q74 54 66 70 L70 74 Q80 55 76 28 Z" fill="#3a2416"/>
+              <circle cx="50" cy="34" r="19" fill="#e8c39c"/>
+              <path d="M31 26 Q50 8 69 26 Q69 18 50 14 Q31 18 31 26 Z" fill="#3a2416"/>
+              <path d="M39 16 L43 7 L50 14 L57 7 L61 16 Z" fill="#c8a24c"/><circle cx="50" cy="10" r="2.2" fill="#eadfa0"/>
+              <ellipse cx="42" cy="35" rx="3.6" ry="4.6" fill="#1a2332"/><circle cx="43.2" cy="33.4" r="1.1" fill="#fff"/>
+              <ellipse cx="58" cy="35" rx="3.6" ry="4.6" fill="#1a2332"/><circle cx="59.2" cy="33.4" r="1.1" fill="#fff"/>
+              <circle cx="36" cy="41" r="3.4" fill="#f2a9a0" opacity="0.55"/><circle cx="64" cy="41" r="3.4" fill="#f2a9a0" opacity="0.55"/>
+              <path d="M45 45 Q50 48 55 45" stroke="#8a4a3a" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <rect x="45" y="50" width="10" height="8" fill="#e8c39c"/>
+              <path d="M33 58 Q50 52 67 58 L84 150 Q50 164 16 150 Z" fill="#b9c1c9" stroke="#12213a" stroke-width="1"/>
+              <path d="M26 120 Q50 128 74 120" stroke="rgba(18,33,58,0.18)" stroke-width="1.4" fill="none"/>
+              <path d="M22 136 Q50 146 78 136" stroke="rgba(18,33,58,0.18)" stroke-width="1.4" fill="none"/>
+              <circle cx="50" cy="68" r="5" fill="#faf6ec" stroke="#c8a24c" stroke-width="1"/>
+              <ellipse cx="28" cy="80" rx="6" ry="10" fill="#e8c39c"/><ellipse cx="72" cy="80" rx="6" ry="10" fill="#e8c39c"/>
+              <ellipse cx="40" cy="158" rx="6" ry="3" fill="#3a2416"/><ellipse cx="60" cy="158" rx="6" ry="3" fill="#3a2416"/>
+            </svg>
+            <span class="fig-lbl">Silver</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div>
+        <div class="row-caption">The Groom &amp; His Men</div>
+        <div class="figure-row">
+
+          <div class="figure">
+            <svg viewBox="0 0 100 165">
+              <path d="M32 26 Q50 10 68 26 Q68 20 50 16 Q32 20 32 26 Z" fill="#241a12"/>
+              <circle cx="50" cy="34" r="19" fill="#e8c39c"/>
+              <path d="M36 18 L44 10 L50 16 L56 10 L64 18 Z" fill="#c8a24c"/><circle cx="50" cy="12" r="2" fill="#eadfa0"/>
+              <ellipse cx="42" cy="35" rx="3.4" ry="4.2" fill="#1a2332"/><circle cx="43.2" cy="33.6" r="1" fill="#fff"/>
+              <ellipse cx="58" cy="35" rx="3.4" ry="4.2" fill="#1a2332"/><circle cx="59.2" cy="33.6" r="1" fill="#fff"/>
+              <circle cx="36" cy="41" r="3" fill="#f2a9a0" opacity="0.5"/><circle cx="64" cy="41" r="3" fill="#f2a9a0" opacity="0.5"/>
+              <path d="M45 45 Q50 47.5 55 45" stroke="#8a4a3a" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <rect x="45" y="50" width="10" height="7" fill="#e8c39c"/>
+              <path d="M30 58 Q50 50 70 58 L76 140 Q50 150 24 140 Z" fill="#c8a24c" stroke="#12213a" stroke-width="1"/>
+              <path d="M50 58 L38 76 L50 68 L62 76 Z" fill="#faf6ec"/>
+              <ellipse cx="30" cy="60" rx="6" ry="4" fill="#eadfa0"/><ellipse cx="70" cy="60" rx="6" ry="4" fill="#eadfa0"/>
+              <path d="M34 62 L58 138" stroke="#faf6ec" stroke-width="4.5" opacity="0.9"/>
+              <circle cx="50" cy="90" r="1.6" fill="#faf6ec"/><circle cx="50" cy="102" r="1.6" fill="#faf6ec"/><circle cx="50" cy="114" r="1.6" fill="#faf6ec"/>
+              <ellipse cx="24" cy="82" rx="6" ry="11" fill="#e8c39c"/><ellipse cx="76" cy="82" rx="6" ry="11" fill="#e8c39c"/>
+              <rect x="34" y="140" width="12" height="20" fill="#1a2332"/><rect x="54" y="140" width="12" height="20" fill="#1a2332"/>
+              <ellipse cx="40" cy="160" rx="7" ry="3.4" fill="#241a12"/><ellipse cx="60" cy="160" rx="7" ry="3.4" fill="#241a12"/>
+            </svg>
+            <span class="fig-lbl">Gold</span>
+          </div>
+
+          <div class="figure lead">
+            <svg viewBox="0 0 100 168">
+              <path d="M50 2 Q60 -2 62 6 Q70 4 68 12 L32 12 Q30 4 38 6 Q40 -2 50 2 Z" fill="#e9d39a" opacity="0.8"/>
+              <path d="M31 25 Q50 8 69 25 Q69 19 50 15 Q31 19 31 25 Z" fill="#241a12"/>
+              <circle cx="50" cy="34" r="20" fill="#f0d0ac"/>
+              <path d="M35 16 L41 6 L46 13 L50 3 L54 13 L59 6 L65 16 Z" fill="#c8a24c"/>
+              <circle cx="50" cy="6" r="2.4" fill="#f4e6b8"/>
+              <ellipse cx="42" cy="35" rx="3.8" ry="4.6" fill="#1a2332"/><circle cx="43.3" cy="33.4" r="1.1" fill="#fff"/>
+              <ellipse cx="58" cy="35" rx="3.8" ry="4.6" fill="#1a2332"/><circle cx="59.3" cy="33.4" r="1.1" fill="#fff"/>
+              <circle cx="35" cy="41" r="3.4" fill="#f2a9a0" opacity="0.5"/><circle cx="65" cy="41" r="3.4" fill="#f2a9a0" opacity="0.5"/>
+              <path d="M44 46 Q50 49 56 46" stroke="#8a4a3a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              <rect x="44" y="52" width="12" height="8" fill="#f0d0ac"/>
+              <path d="M28 60 Q50 52 72 60 L80 146 Q50 158 20 146 Z" fill="#faf6ec" stroke="#c8a24c" stroke-width="1.4"/>
+              <path d="M50 60 L36 82 L50 70 L64 82 Z" fill="#12213a"/>
+              <ellipse cx="28" cy="63" rx="6.5" ry="4.4" fill="#c8a24c"/><ellipse cx="72" cy="63" rx="6.5" ry="4.4" fill="#c8a24c"/>
+              <path d="M32 65 L54 144" stroke="#c8a24c" stroke-width="5.5" opacity="0.9"/>
+              <circle cx="50" cy="94" r="1.8" fill="#c8a24c"/><circle cx="50" cy="107" r="1.8" fill="#c8a24c"/><circle cx="50" cy="120" r="1.8" fill="#c8a24c"/>
+              <ellipse cx="22" cy="86" rx="6.6" ry="11.5" fill="#f0d0ac"/><ellipse cx="78" cy="86" rx="6.6" ry="11.5" fill="#f0d0ac"/>
+              <rect x="32" y="146" width="13" height="20" fill="#12213a"/><rect x="55" y="146" width="13" height="20" fill="#12213a"/>
+              <ellipse cx="39" cy="166" rx="7.4" ry="3.6" fill="#241a12"/><ellipse cx="61" cy="166" rx="7.4" ry="3.6" fill="#241a12"/>
+            </svg>
+            <span class="fig-lbl">Groom</span>
+          </div>
+
+          <div class="figure">
+            <svg viewBox="0 0 100 165">
+              <path d="M32 26 Q50 10 68 26 Q68 20 50 16 Q32 20 32 26 Z" fill="#241a12"/>
+              <circle cx="50" cy="34" r="19" fill="#e8c39c"/>
+              <path d="M36 18 L44 10 L50 16 L56 10 L64 18 Z" fill="#c8a24c"/><circle cx="50" cy="12" r="2" fill="#eadfa0"/>
+              <ellipse cx="42" cy="35" rx="3.4" ry="4.2" fill="#1a2332"/><circle cx="43.2" cy="33.6" r="1" fill="#fff"/>
+              <ellipse cx="58" cy="35" rx="3.4" ry="4.2" fill="#1a2332"/><circle cx="59.2" cy="33.6" r="1" fill="#fff"/>
+              <circle cx="36" cy="41" r="3" fill="#f2a9a0" opacity="0.5"/><circle cx="64" cy="41" r="3" fill="#f2a9a0" opacity="0.5"/>
+              <path d="M45 45 Q50 47.5 55 45" stroke="#8a4a3a" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <rect x="45" y="50" width="10" height="7" fill="#e8c39c"/>
+              <path d="M30 58 Q50 50 70 58 L76 140 Q50 150 24 140 Z" fill="#7fb4da" stroke="#12213a" stroke-width="1"/>
+              <path d="M50 58 L38 76 L50 68 L62 76 Z" fill="#faf6ec"/>
+              <ellipse cx="30" cy="60" rx="6" ry="4" fill="#eadfa0"/><ellipse cx="70" cy="60" rx="6" ry="4" fill="#eadfa0"/>
+              <path d="M34 62 L58 138" stroke="#faf6ec" stroke-width="4.5" opacity="0.9"/>
+              <circle cx="50" cy="90" r="1.6" fill="#faf6ec"/><circle cx="50" cy="102" r="1.6" fill="#faf6ec"/><circle cx="50" cy="114" r="1.6" fill="#faf6ec"/>
+              <ellipse cx="24" cy="82" rx="6" ry="11" fill="#e8c39c"/><ellipse cx="76" cy="82" rx="6" ry="11" fill="#e8c39c"/>
+              <rect x="34" y="140" width="12" height="20" fill="#1a2332"/><rect x="54" y="140" width="12" height="20" fill="#1a2332"/>
+              <ellipse cx="40" cy="160" rx="7" ry="3.4" fill="#241a12"/><ellipse cx="60" cy="160" rx="7" ry="3.4" fill="#241a12"/>
+            </svg>
+            <span class="fig-lbl">Sky Blue</span>
+          </div>
+
+          <div class="figure">
+            <svg viewBox="0 0 100 165">
+              <path d="M32 26 Q50 10 68 26 Q68 20 50 16 Q32 20 32 26 Z" fill="#241a12"/>
+              <circle cx="50" cy="34" r="19" fill="#e8c39c"/>
+              <path d="M36 18 L44 10 L50 16 L56 10 L64 18 Z" fill="#c8a24c"/><circle cx="50" cy="12" r="2" fill="#eadfa0"/>
+              <ellipse cx="42" cy="35" rx="3.4" ry="4.2" fill="#1a2332"/><circle cx="43.2" cy="33.6" r="1" fill="#fff"/>
+              <ellipse cx="58" cy="35" rx="3.4" ry="4.2" fill="#1a2332"/><circle cx="59.2" cy="33.6" r="1" fill="#fff"/>
+              <circle cx="36" cy="41" r="3" fill="#f2a9a0" opacity="0.5"/><circle cx="64" cy="41" r="3" fill="#f2a9a0" opacity="0.5"/>
+              <path d="M45 45 Q50 47.5 55 45" stroke="#8a4a3a" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <rect x="45" y="50" width="10" height="7" fill="#e8c39c"/>
+              <path d="M30 58 Q50 50 70 58 L76 140 Q50 150 24 140 Z" fill="#b9c1c9" stroke="#12213a" stroke-width="1"/>
+              <path d="M50 58 L38 76 L50 68 L62 76 Z" fill="#faf6ec"/>
+              <ellipse cx="30" cy="60" rx="6" ry="4" fill="#eadfa0"/><ellipse cx="70" cy="60" rx="6" ry="4" fill="#eadfa0"/>
+              <path d="M34 62 L58 138" stroke="#faf6ec" stroke-width="4.5" opacity="0.9"/>
+              <circle cx="50" cy="90" r="1.6" fill="#faf6ec"/><circle cx="50" cy="102" r="1.6" fill="#faf6ec"/><circle cx="50" cy="114" r="1.6" fill="#faf6ec"/>
+              <ellipse cx="24" cy="82" rx="6" ry="11" fill="#e8c39c"/><ellipse cx="76" cy="82" rx="6" ry="11" fill="#e8c39c"/>
+              <rect x="34" y="140" width="12" height="20" fill="#1a2332"/><rect x="54" y="140" width="12" height="20" fill="#1a2332"/>
+              <ellipse cx="40" cy="160" rx="7" ry="3.4" fill="#241a12"/><ellipse cx="60" cy="160" rx="7" ry="3.4" fill="#241a12"/>
+            </svg>
+            <span class="fig-lbl">Silver</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================= LOVE STORY ================= -->
+<section class="story">
+  <div class="section-inner reveal">
+    <div class="center">
+      <div class="eyebrow">Our Love Story</div>
+      <h2 style="color:var(--ivory); margin-top:16px;">By His Grace</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="moment">
+        <div class="arch-small"></div>
+        <div class="content">
+          <span class="when">2nd November 2025 &middot; The Call</span>
+          <p>Imam Onireke told Ahmed her father would call him. True to his word, he did &mdash; and afterward sent Najeebah's number. Before anything else, the two agreed to perform Istikharah together, seeking Allah's guidance and leaving their fate in His hands.</p>
+        </div>
+      </div>
+      <div class="moment">
+        <div class="arch-small"></div>
+        <div class="content">
+          <span class="when">Getting To Know Each Other</span>
+          <p>While observing the Istikharah, they continued their conversations. Alhamdulillah, the outcome was clear and good.</p>
+        </div>
+      </div>
+      <div class="moment">
+        <div class="arch-small"></div>
+        <div class="content">
+          <span class="when">First Meeting &middot; Lavish</span>
+          <p>The moment Ahmed saw her, he knew: "this is exactly my spec." Najeebah arrived with a sheet of carefully written questions for him &mdash; adorable, unforgettable, and, as it turned out, decisive. It was his honesty that settled things.</p>
+        </div>
+      </div>
+      <div class="moment">
+        <div class="arch-small"></div>
+        <div class="content">
+          <span class="when">Three Months Later &middot; Introduction</span>
+          <p>Since their introduction ceremony, Allah has made the journey easier than they ever imagined &mdash; every step filled with His mercy, blessings, and guidance.</p>
+        </div>
+      </div>
+      <div class="moment">
+        <div class="arch-small"></div>
+        <div class="content">
+          <span class="when">15th August 2026 &middot; Halal, Insha Allah</span>
+          <p>With grateful hearts, they now look forward to the day everything becomes halal. Alhamdulillahi Rabbil 'Alamin.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VERSE ================= -->
+<section class="verse">
+  <div class="section-inner center reveal">
+    <div class="eyebrow" style="color:var(--sky-deep);">A Toast To Their Union</div>
+    <div class="verse-frame">
+      <span class="surah">Qur'an &middot; Surah Ar-Rum 30:21</span>
+      <blockquote>
+        "And among His signs is that He created for you mates from among yourselves, that you may find tranquility in them; and He placed between you affection and mercy. Indeed in that are signs for people who reflect."
+      </blockquote>
+      <cite>May Allah bless this union with peace, love, mercy and endless barakah.</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RSVP ================= -->
+<section class="rsvp">
+  <div class="section-inner center reveal">
+    <div class="eyebrow">R.S.V.P</div>
+    <h2>Kindly Let Us Know You're Coming</h2>
+
+    <div class="phones">
+      <a class="phone-btn" href="tel:08023101874">0802 310 1874</a>
+      <a class="phone-btn" href="tel:09057755675">0905 775 5675</a>
+      <a class="phone-btn" href="tel:08169121454">0816 912 1454</a>
+      <a class="phone-btn" href="tel:08108619797">0810 861 9797</a>
+    </div>
+
+    <p class="blessing">
+      "Ameen. May Allah bless our union, make our marriage a source of peace, love, mercy, and endless barakah, and keep us steadfast upon His religion." 🤲
+    </p>
+
+    <div class="footer-note">Ahmed &amp; Najeebah &middot; 15 August 2026</div>
+  </div>
+</section>
+
+<script>
+  // Countdown
+  const target = new Date("2026-08-15T10:00:00+01:00").getTime();
+  function tick(){
+    const now = Date.now();
+    let diff = Math.max(0, target - now);
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff / (1000*60*60)) % 24);
+    const m = Math.floor((diff / (1000*60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // Book cover open
+  const bookCover = document.getElementById('bookCover');
+  const coverScene = document.getElementById('coverScene');
+  bookCover.addEventListener('click', () => {
+    bookCover.classList.add('open');
+    coverScene.classList.add('gone');
+    setTimeout(() => {
+      document.body.classList.remove('locked');
+      coverScene.style.display = 'none';
+    }, 1600);
+  }, { once: true });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(prefersReduced){
+    reveals.forEach(el => el.classList.add('in'));
+  } else {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => obs.observe(el));
+  }
+</script>
+
+</body>
+</html>

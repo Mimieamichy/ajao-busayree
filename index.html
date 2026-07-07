@@ -36,7 +36,7 @@
     font-size:0.72rem;
   }
   @media (prefers-reduced-motion: reduce){
-    *{animation:none !important; transition:none !important;}
+    *:not(.book-cover):not(.cover-scene){animation:none !important; transition:none !important;}
   }
 
   /* ---------- reveal ---------- */
@@ -405,7 +405,7 @@
     box-shadow: 10px 24px 60px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(200,162,76,0.18);
     transition: transform 1.3s cubic-bezier(.6,.04,.32,1);
   }
-  .book-cover.open{ transform: rotateY(-155deg); }
+  .book-cover.open{ transform: translateX(50%) rotateY(-155deg); }
   .book-cover::before{
     content:''; position:absolute; inset:12px;
     border:1px solid rgba(200,162,76,0.5);

@@ -374,6 +374,60 @@
     color:var(--sky); text-transform:uppercase;
   }
 
+  /* ================= BRIDAL PARTY & SUPPORT ================= */
+  .party{ background:var(--ivory); }
+  .party .eyebrow{ color:var(--sky-deep); }
+  .party-grid{
+    display:grid; grid-template-columns: 1fr; gap:50px;
+    margin-top:50px;
+  }
+  @media (min-width:768px){ .party-grid{ grid-template-columns:1fr 1fr; gap:40px; } }
+  .party-group{ text-align:center; }
+  .party-group h3{
+    font-size: 1.8rem; color:var(--navy-2); font-style:italic; margin-bottom: 24px;
+  }
+  .party-names{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:10px;
+  }
+  .party-name-tag{
+    font-family:'Jost', sans-serif; font-size:0.85rem; letter-spacing:0.05em;
+    background:var(--ivory-2); border:1px solid rgba(200,162,76,0.3);
+    padding: 8px 16px; border-radius:24px; color:var(--ink);
+    transition: all 0.3s ease;
+  }
+  .party-name-tag:hover{ background:var(--gold-light); border-color:var(--gold); }
+  
+  .party-name-tag.bridesmaid{
+    background: rgba(127,180,218,0.12);
+    border-color: rgba(127,180,218,0.5);
+    color: var(--sky-deep);
+  }
+  .party-name-tag.bridesmaid:hover{ 
+    background: rgba(127,180,218,0.25); 
+    border-color: var(--sky-deep); 
+  }
+
+  .support{ background:var(--ivory-2); text-align:center; }
+  .support-card{
+    margin:40px auto 0; max-width:440px; background:var(--ivory);
+    padding:40px 30px; border-radius:16px; border:1px solid var(--gold);
+    box-shadow:0 12px 36px rgba(0,0,0,0.06);
+  }
+  .support-lbl{
+    font-family:'Jost', sans-serif; font-size:0.75rem; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--silver); margin-bottom:6px; margin-top:24px;
+  }
+  .support-lbl:first-child{ margin-top:0; }
+  .support-val{
+    font-size:1.3rem; color:var(--navy-2); font-family:'Jost', sans-serif; font-weight:500;
+  }
+  .support-val.acct-num{
+    font-size:2rem; color:var(--gold); font-family:'Cormorant Garamond', serif; font-weight:600; letter-spacing:0.05em;
+  }
+  .support-val.acct-name{
+    font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.4rem;
+  }
+
   /* ================= COVER / BOOK-OPEN ================= */
   body.locked{ overflow:hidden; height:100vh; }
   .cover-scene{
@@ -593,6 +647,9 @@
           Opposite Train Station<br>
           Byazhin Road, Kubwa, Abuja
         </div>
+        <div class="map-wrap" style="margin-top:24px; border-radius:10px; overflow:hidden; border:1px solid rgba(200,162,76,0.4); box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+          <iframe width="100%" height="220" style="border:0;" loading="lazy" src="https://maps.google.com/maps?q=Al-Huda%20Masjid%2C%20Byazhin%20Road%2C%20Kubwa%2C%20Abuja&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+        </div>
       </div>
       <div class="venue-card">
         <div class="arch-small" style="margin:0 auto 20px;"></div>
@@ -601,6 +658,9 @@
         <div class="addr">
           Algos Hotel<br>
           Kubwa, Abuja
+        </div>
+        <div class="map-wrap" style="margin-top:24px; border-radius:10px; overflow:hidden; border:1px solid rgba(200,162,76,0.4); box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+          <iframe width="100%" height="220" style="border:0;" loading="lazy" src="https://maps.google.com/maps?q=Algos%20Hotel%2C%20Kubwa%2C%20Abuja&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
         </div>
       </div>
     </div>
@@ -731,6 +791,99 @@
         "And among His signs is that He created for you mates from among yourselves, that you may find tranquility in them; and He placed between you affection and mercy. Indeed in that are signs for people who reflect."
       </blockquote>
       <cite>May Allah bless this union with peace, love, mercy and endless barakah.</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BRIDAL PARTY ================= -->
+<section class="party">
+  <div class="section-inner reveal">
+    <div class="center">
+      <div class="eyebrow">Our Squad</div>
+      <h2>The Bridal Party</h2>
+    </div>
+    
+    <div class="party-grid">
+      <div class="party-group">
+        <h3>The Groomsmen</h3>
+        <div class="party-names">
+          <span class="party-name-tag">Kazeem</span>
+          <span class="party-name-tag">Lukuman</span>
+          <span class="party-name-tag">Ganiyu</span>
+          <span class="party-name-tag">Biodun</span>
+          <span class="party-name-tag">Yinka</span>
+          <span class="party-name-tag">Joe</span>
+          <span class="party-name-tag">Halilu</span>
+          <span class="party-name-tag">Haksoft</span>
+          <span class="party-name-tag">Sheye</span>
+          <span class="party-name-tag">Abdullateef</span>
+          <span class="party-name-tag">Hammed (Boxer)</span>
+          <span class="party-name-tag">Kolawole</span>
+          <span class="party-name-tag">Ibrahim (Skimpy)</span>
+          <span class="party-name-tag">Olamide</span>
+          <span class="party-name-tag">Ahmed (Oloye)</span>
+          <span class="party-name-tag">Sadiq</span>
+          <span class="party-name-tag">Best way</span>
+          <span class="party-name-tag">Engr Niyi</span>
+          <span class="party-name-tag">S K</span>
+          <span class="party-name-tag">Blinks</span>
+          <span class="party-name-tag">Agba</span>
+          <span class="party-name-tag">Waxman</span>
+          <span class="party-name-tag">Toheeb</span>
+          <span class="party-name-tag">Habib</span>
+          <span class="party-name-tag">Ibrahim (Abulesowo)</span>
+          <span class="party-name-tag">Habeeb</span>
+          <span class="party-name-tag">Saliu</span>
+          <span class="party-name-tag">Olalere</span>
+          <span class="party-name-tag">Emmanuel</span>
+          <span class="party-name-tag">Godwin</span>
+          <span class="party-name-tag">Tosin</span>
+          <span class="party-name-tag">Lucky</span>
+          <span class="party-name-tag">Hammed (Ijoba)</span>
+        </div>
+      </div>
+
+      <div class="party-group">
+        <h3>The Bridesmaids</h3>
+        <div class="party-names">
+          <span class="party-name-tag bridesmaid">Muadha</span>
+          <span class="party-name-tag bridesmaid">Laila</span>
+          <span class="party-name-tag bridesmaid">Rahma</span>
+          <span class="party-name-tag bridesmaid">Husseina</span>
+          <span class="party-name-tag bridesmaid">Zainab</span>
+          <span class="party-name-tag bridesmaid">Hassana</span>
+          <span class="party-name-tag bridesmaid">Hauwa</span>
+          <span class="party-name-tag bridesmaid">Sukurat</span>
+          <span class="party-name-tag bridesmaid">Dr. Zulaihat</span>
+          <span class="party-name-tag bridesmaid">Aisha</span>
+          <span class="party-name-tag bridesmaid">Fatimah</span>
+          <span class="party-name-tag bridesmaid">Maryam</span>
+          <span class="party-name-tag bridesmaid">Faridah</span>
+          <span class="party-name-tag bridesmaid">Hannatu</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SUPPORT / GIFTS ================= -->
+<section class="support">
+  <div class="section-inner reveal">
+    <div class="eyebrow">Support &amp; Gifts</div>
+    <h2>Bless Our Union</h2>
+    <p style="margin-top:16px; font-size:1.05rem; color:var(--ink); max-width:600px; margin-left:auto; margin-right:auto; line-height:1.7;">
+      Your presence and prayers at our wedding are the greatest gifts of all. However, if you wish to bless us with a gift, you can use the account details below:
+    </p>
+    
+    <div class="support-card">
+      <div class="support-lbl">Bank Name</div>
+      <div class="support-val">Opay</div>
+      
+      <div class="support-lbl">Account Number</div>
+      <div class="support-val acct-num">9028041899</div>
+      
+      <div class="support-lbl">Account Name</div>
+      <div class="support-val acct-name">Busayree Najeebah Ikeoluwa</div>
     </div>
   </div>
 </section>
